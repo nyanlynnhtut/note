@@ -1,0 +1,19 @@
+{{ Form::start(rbUrl('note/'.$url)) }}
+
+	{{ Form::label('Title', 'title') }}
+	{{ Form::text('title', $note->title) }}
+
+	<span class="msg error">{{ $note->errors('title') }}</span>
+
+	{{ Form::label('Body', 'body') }}
+	{{ Form::textarea('body', $note->body) }}
+
+	<span class="msg error">{{ $note->errors('body') }}</span>
+
+	{{ loop($external as $e) }}
+		{{ $e }}
+	{{ endloop }}
+
+	{{ Form::submit('submit', 'Send') }}
+
+{{ Form::end() }}
