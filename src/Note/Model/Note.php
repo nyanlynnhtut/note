@@ -2,7 +2,9 @@
 
 namespace Note\Model;
 
-class Note extends \Eloquent
+use Reborn\MVC\Model\Search as Base;
+
+class Note extends Base
 {
     protected $table = 'notes';
 

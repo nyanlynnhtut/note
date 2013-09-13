@@ -1,18 +1,19 @@
-{{ Form::start(rbUrl('note/'.$url)) }}
+{{ Form::start(adminUrl('note/'.$url)) }}
 
 	{{ Form::label('Title', 'title') }}
 	{{ Form::text('title', $note->title) }}
 
 	<span class="msg error">{{ $note->errors('title') }}</span>
+	<br>
 
 	{{ Form::label('Body', 'body') }}
 	{{ Form::textarea('body', $note->body) }}
 
 	<span class="msg error">{{ $note->errors('body') }}</span>
 
-	{{ Form::tags('tagger') }}
+	<br>
 
-	{{ Form::thumbnail('gallery_img', $note->image, array('add' => 'Add Thumb', 'remove' => 'Remove Thumb')) }}
+	{{ Form::tags('tagger', 'whoss, helo') }}
 
 	{{ loop($external as $e) }}
 		{{ $e }}

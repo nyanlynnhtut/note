@@ -3,10 +3,12 @@
 namespace Note\Controller;
 
 use Note\Model\Note;
+use Note\Model\Search;
 
 class NoteController extends \PublicController
 {
-	public function before() {}
+	public function before()
+	{}
 
 	public function index()
 	{
@@ -36,6 +38,30 @@ class NoteController extends \PublicController
 						->set('notes', $notes)
 						->set('pagi', $pagination)
 						->setPartial('index');
+	}
+
+	public function search()
+	{
+		$k = \Input::get('q');
+
+		$s = Note::make('notkes')
+						->contain('title', $k)
+						->asc('id')
+						->get();
+
+		foreach ($s as $r) {
+			echo 'Search Results :';
+			echo $r->title;
+			echo '<br>';
+		}
+
+		$all = Note::orderBy('title', 'desc')->get();
+		foreach ($all as $r) {
+			echo 'All Results :';
+			echo $r->title;
+			echo '<br>';
+		}
+		exit;
 	}
 
 	public function create()

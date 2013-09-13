@@ -1,0 +1,9 @@
+<div id="note-single">
+	<h3>Note Single</h3>
+	<p>Note Title: {{ $note->title }}</p>
+	<p>Note Body: {{ $note->body }}</p>
+	<h4>Custom Field Data</h4>
+	{{ loop($note->fields as $name => $value) }}
+		<p>{{ $name }}: {{ $value }}</p>
+	{{ endloop }}
+</div>

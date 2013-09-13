@@ -1,0 +1,21 @@
+<a href="{{ rbUrl('note/create') }}" class="btn">Add</a>
+{{ if($notes->isEmpty()) }}
+	<h3>No Note :D</h3>
+{{ else }}
+	{{ loop($notes as $note) }}
+
+	<h3>{{ $note->title }}</h3>
+	<p>Created At:: {{ $note->created_at }}</p>
+	{{ ifnotempty($note->fields) }}
+		{{ loop($note->fields as $k => $v) }}
+		<span style="color:red;">{{ $k }} :: {{ $v }}</span>
+		<br>
+		{{ endloop }}
+	{{ endif }}
+	<a href="{{ rbUrl('note/view/'.$note->id) }}">View</a>
+	<hr>
+	{{ endloop }}
+
+	{{ $pagi }}
+
+{{ endif }}

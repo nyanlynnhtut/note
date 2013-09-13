@@ -4,6 +4,18 @@
 	<p>Note Body: {{ $note->body }}</p>
 	<h4>Custom Field Data</h4>
 	{{ loop($note->fields as $name => $value) }}
-		<p>{{ $name }}: {{ $value }}</p>
+		{{ if(is_array($value)) }}
+			{{ loop($value as $v) }}
+				{{ $v }}<br>
+			{{ endloop }}
+		{{ else }}
+			<p>{{ $name }}: {{ $value }}</p>
+		{{ endif }}
 	{{ endloop }}
+
+	With Field->lists()
+	{{ $note->fields->lists(array('style' => 'list-style: circle')) }}
+
+	With Field->table()
+	{{ $note->fields->table() }}
 </div>
